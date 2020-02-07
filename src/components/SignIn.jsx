@@ -28,6 +28,8 @@ class SignIn extends Component {
           placeholder="Email"
           value={email}
           onChange={this.handleChange}
+          autoComplete="username"
+
         />
         <input
           type="password"
@@ -35,6 +37,7 @@ class SignIn extends Component {
           placeholder="Password"
           value={password}
           onChange={this.handleChange}
+          autoComplete="current-password"
         />
         <input type="submit" value="Sign In" />
         <button onClick={signInWithGoogle}>Sign In With Google</button>

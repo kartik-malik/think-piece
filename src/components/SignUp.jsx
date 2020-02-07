@@ -43,6 +43,8 @@ class SignUp extends Component {
           placeholder="Email"
           value={email}
           onChange={this.handleChange}
+          autoComplete="username"
+
         />
         <input
           type="password"
@@ -50,6 +52,8 @@ class SignUp extends Component {
           placeholder="Password"
           value={password}
           onChange={this.handleChange}
+          autoComplete="current-password"
+
         />
         <input type="submit" value="Sign Up" />
       </form>

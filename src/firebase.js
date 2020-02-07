@@ -1,6 +1,7 @@
 import firebase from 'firebase/app';
 import 'firebase/firestore';
-import 'firebase/auth'
+import 'firebase/auth';
+import 'firebase/storage'
 var firebaseConfig = {
     apiKey: "AIzaSyAQH6WKGNVgBSIJSvQpzhj5PQBUkp3Kddw",
     authDomain: "think-piece-8bf56.firebaseapp.com",
@@ -18,7 +19,7 @@ var firebaseConfig = {
   export const provider= new firebase.auth.GoogleAuthProvider();
   export const signInWithGoogle=()=>auth.signInWithPopup(provider);
   export const signOut=()=>auth.signOut()
-firestore.settings({timestampsInSnapshots:true})
+
 
   window.firebase=firebase;
 
@@ -45,15 +46,14 @@ export const createUserProfileDocument=async (user,additionalData)=>{
   return getUserDocument(user.uid);
 
 }
-export const getUserDocument=async (uid)=>{
+export const getUserDocument= (uid)=>{
   if(!uid) return null;
   try {
-    const userDocument=await firestore.collection('users').doc(uid).get();
-     return {uid,...userDocument.data()};
+    return firestore.collection('users').doc(uid);
   } catch(error){
     console.error(error);
   }
 
 }
-
+export const storage=firebase.storage();
   export default firebase;
