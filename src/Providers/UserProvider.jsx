@@ -1,6 +1,5 @@
 import React,{Component,createContext} from 'react';
 import {auth ,createUserProfileDocument} from '../firebase';
-import { collectIdsAndDocs } from '../utilities';
 export const UserContext =createContext();
 class UserProvider extends Component{
     state = {

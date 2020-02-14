@@ -24,11 +24,17 @@ class UserProfile extends Component {
         return auth.currentUser.uid;
     }
     get userRef(){
-        return firestore.doc(`users/${this.uid}`)
+        return firestore.collection(`users`).doc(this.uid)
     }
     get file(){
         return this.imageInput && this.imageInput.files[0];
     }
+    componentDidMount=async()=>{
+        const userData= await firestore.collection(`users`).doc(this.uid).get()
+        const {displayName}=userData.data();
+        this.setState({displayName})
+    }
+   
 render(){
     const {displayName}=this.state
     return(
