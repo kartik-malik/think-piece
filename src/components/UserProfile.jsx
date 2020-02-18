@@ -30,9 +30,16 @@ class UserProfile extends Component {
         return this.imageInput && this.imageInput.files[0];
     }
     componentDidMount=async()=>{
-        const userData= await firestore.collection(`users`).doc(this.uid).get()
-        const {displayName}=userData.data();
-        this.setState({displayName})
+        auth.onAuthStateChanged(async (userAuth)=>{
+            if(userAuth){
+                const userData= await firestore.collection(`users`).doc(this.uid).get()
+                const {displayName}=userData.data();
+                this.setState({displayName})
+             }
+            })
+        
+          
+        
     }
    
 render(){
